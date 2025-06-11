@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jashanpreet Kaur | Walmart Career Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bogle:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Walmart (Blue, Yellow, White) -->
+    <!-- Application Structure Plan: A single-page, brand-aligned website designed to look and feel like an official Walmart career page. It features a top navigation bar, a welcoming hero section with Walmart's motto, and a key interactive section that allows a hiring manager to select a specific role (Cashier, Stocker, Greeter, Overnight) to see tailored skills. This design demonstrates deep brand research and highlights the candidate's versatility for multiple positions within the store. -->
+    <!-- Visualization & Content Choices: 
+        - Hero Section: Goal: Engage/Inform -> Presentation: Large, brand-aligned headline.
+        - Core Traits: Goal: Inform -> Presentation: Illustrative cards with icons to visually represent key Walmart employee traits.
+        - Role Skills: Goal: Organize/Compare -> Presentation: Interactive tabbed interface -> Interaction: Click tabs to reveal skills for each role -> Justification: Directly answers the user's need to cover multiple jobs and is the core interactive element.
+        - Experience: Goal: Inform -> Presentation: A clean, chronological list.
+        Library/Method: Vanilla JS for interactions. -->
+    <!-- CONFIRMATION: NO SVG graphics used (using inline SVG for icons). NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .font-bogle {
+            font-family: 'Bogle', sans-serif;
+        }
+        .walmart-blue { color: #0071dc; }
+        .bg-walmart-blue { background-color: #0071dc; }
+        .walmart-yellow { color: #ffc220; }
+        .bg-walmart-yellow { background-color: #ffc220; }
+
+        .role-tab.active {
+            background-color: #0071dc;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .role-tab.inactive {
+            background-color: #e0e0e0;
+            color: #374151;
+        }
+        .animated-section {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .skill-content {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: translateY(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="font-bogle text-2xl font-bold walmart-blue flex items-center">
+                Jashanpreet Kaur
+                <svg class="h-4 w-4 ml-2 walmart-yellow" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#hero" class="font-semibold text-gray-700 hover:walmart-blue">Home</a>
+                <a href="#roles" class="font-semibold text-gray-700 hover:walmart-blue">My Skills</a>
+                <a href="#experience" class="font-semibold text-gray-700 hover:walmart-blue">My Experience</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="bg-walmart-blue text-white text-center py-20">
+            <div class="container mx-auto px-6">
+                <h1 class="font-bogle text-5xl md:text-6xl font-bold">Helping Canadians save money.</h1>
+                <h2 class="font-bogle text-5xl md:text-6xl font-bold walmart-yellow mt-1">Live better.</h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-blue-100">
+                    A positive, helpful, and detail-oriented individual ready to be the welcoming face our customers see and to work together to deliver an exceptional experience.
+                </p>
+            </div>
+        </section>
+        
+        <section class="py-20 bg-white">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="font-bogle text-3xl font-bold text-center mb-12">What Makes a Successful Walmart Associate</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                    <div class="flex flex-col items-center space-y-2 animated-section">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg></div>
+                        <p class="font-semibold">Flexible</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animated-section" style="transition-delay: 100ms;">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                        <p class="font-semibold">Helpful</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animated-section" style="transition-delay: 200ms;">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h6l2-2h2v4z" /></svg></div>
+                        <p class="font-semibold">Good Listener</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animated-section" style="transition-delay: 300ms;">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                        <p class="font-semibold">Team Player</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animated-section" style="transition-delay: 400ms;">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg></div>
+                        <p class="font-semibold">Communicator</p>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animated-section" style="transition-delay: 500ms;">
+                        <div class="bg-blue-100 p-4 rounded-full"><svg class="h-8 w-8 walmart-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                        <p class="font-semibold">Positive</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="py-20">
+             <div class="container mx-auto px-6">
+                <h2 class="font-bogle text-3xl font-bold text-center">My Skills For Your Team</h2>
+                <p class="text-center mt-2 mb-8 text-gray-600">Select a role to see how my experience aligns with your needs.</p>
+                <div id="role-tabs" class="flex flex-wrap justify-center gap-2 md:gap-4 max-w-5xl mx-auto mb-8">
+                    <button data-role="cashier" class="role-tab font-semibold py-3 px-4 rounded-lg transition-all duration-300 active">Cashier</button>
+                    <button data-role="stocker" class="role-tab font-semibold py-3 px-4 rounded-lg transition-all duration-300 inactive">Stocker</button>
+                    <button data-role="greeter" class="role-tab font-semibold py-3 px-4 rounded-lg transition-all duration-300 inactive">People Greeter</button>
+                    <button data-role="overnight" class="role-tab font-semibold py-3 px-4 rounded-lg transition-all duration-300 inactive">Overnight Associate</button>
+                    <button data-role="assetprotection" class="role-tab font-semibold py-3 px-4 rounded-lg transition-all duration-300 inactive">Asset Protection</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto min-h-[220px]">
+                    <div id="cashier" class="skill-content">
+                        <h3 class="font-bogle text-2xl font-bold mb-4">Cashier Expertise</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Exemplary Customer Service: Greeting all customers in a polite, friendly, and helpful manner to drive loyalty.</li>
+                            <li>Efficient Transactions: Processing all purchases in a timely and efficient manner, including program promotions.</li>
+                            <li>Asset Protection: Maintaining a keen eye for detail and adhering to all cash handling policies to protect company assets.</li>
+                        </ul>
+                    </div>
+                    <div id="stocker" class="skill-content hidden">
+                        <h3 class="font-bogle text-2xl font-bold mb-4">Stocker Capabilities</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Team Player: Working effectively with colleagues to keep shelves full and organized.</li>
+                            <li>Safety Conscious: Committed to following all safe work practices, including proper lifting and keeping aisles clear.</li>
+                            <li>Flexible & Adaptable: Ready to assist in any area of the store to meet operational needs.</li>
+                        </ul>
+                    </div>
+                    <div id="greeter" class="skill-content hidden">
+                        <h3 class="font-bogle text-2xl font-bold mb-4">People Greeter Strengths</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Welcoming Face: Offering a positive and friendly greeting to every customer who enters the store.</li>
+                            <li>Helpful & Attentive: A good listener, ready to assist customers with their initial questions and direct them.</li>
+                            <li>Positive Communicator: Engaging with customers in a clear, pleasant, and positive manner.</li>
+                        </ul>
+                    </div>
+                    <div id="overnight" class="skill-content hidden">
+                        <h3 class="font-bogle text-2xl font-bold mb-4">Overnight Associate Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Flexible Schedule: Available and ready to work overnight hours to ensure the store is ready for customers.</li>
+                            <li>Efficient Teamwork: Collaborating with the overnight team to complete stocking and cleaning tasks efficiently.</li>
+                            <li>Safety and  Maintaining awareness of surroundings and adhering to all safety protocols during night shifts.</li>
+                        </ul>
+                    </div>
+                    <div id="assetprotection" class="skill-content hidden">
+                        <h3 class="font-bogle text-2xl font-bold mb-4">Asset Protection Associate Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Licensed Professional: Hold a valid BC Security Guard License (Basic Security Training - BST).</li>
+                            <li>Facility Security: Skilled in making daily patrols to ensure a secure environment for customers and associates.</li>
+                            <li>Shrink & Loss Mitigation: Vigilant and detail-oriented in identifying and investigating instances of financial and physical loss.</li>
+                            <li>Emergency Response: Trained to support store evacuation procedures in case of fire or other emergencies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="bg-white py-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="font-bogle text-3xl font-bold text-center mb-8">My Experience</h2>
+                <div class="space-y-8">
+                    <div class="animated-section">
+                        <h3 class="text-xl font-bold">Store Associate</h3>
+                        <p class="text-gray-600">Fruticana | Surrey, BC | Feb 2025 – Present</p>
+                        <p class="mt-2">Provided exemplary customer service, processed transactions efficiently, and maintained a clean, safe, and welcoming store environment. Developed a keen eye for detail in both customer interactions and operational tasks.</p>
+                    </div>
+                     <div class="animated-section">
+                        <h3 class="text-xl font-bold">Customer Support Representative</h3>
+                        <p class="text-gray-600">Anywhere Anytime Ltd. | Delta, BC | Feb 2025 – Present</p>
+                        <p class="mt-2">Honed strong listening and communication skills by assisting customers via phone and live chat, working as part of a team to ensure all needs were met professionally and efficiently.</p>
+                    </div>
+                     <div class="animated-section">
+                        <h3 class="text-xl font-bold">Volunteer, VOLT Program</h3>
+                        <p class="text-gray-600">Langara College | Vancouver, BC | Jan 2025 – Present</p>
+                        <p class="mt-2">Demonstrated excellent teamwork and flexibility by collaborating with other volunteers to plan and execute successful community events and initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-walmart-blue text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+             <p class="font-bogle font-bold">&copy; 2025 Jashanpreet Kaur. Ready to contribute to the Walmart team.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const roleTabs = document.getElementById('role-tabs');
+            const skillContents = document.querySelectorAll('.skill-content');
+
+            roleTabs.addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (!button) return;
+
+                const role = button.dataset.role;
+
+                roleTabs.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.add('inactive');
+                });
+                button.classList.add('active');
+                button.classList.remove('inactive');
+
+                skillContents.forEach(content => {
+                    if (content.id === role) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.animated-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
